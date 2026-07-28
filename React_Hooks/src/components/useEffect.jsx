@@ -1,11 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function UseEffect() {
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
-    document.title = "Use Effect Demo";
+    console.log("useEffect ran");
   }, []);
 
-  return <p>Use Effect ran when this component loaded.</p>;
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+      <p>This is a simple useEffect example.</p>
+    </div>
+  );
 }
 
 export default UseEffect;
