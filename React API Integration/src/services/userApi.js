@@ -1,43 +1,23 @@
+import axios from "axios";
 const API_URL = "https://jsonplaceholder.typicode.com/users";
 
 export async function getUsers() {
-  const response = await fetch(API_URL);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch users");
-  }
-
-  return response.json();
+  const response = await axios.get(API_URL);
+  return response.data;
 }
 
 export async function addUser(newUser) {
-  const response = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newUser),
-  });
-
-  return response.json();
+  const response = await axios.post(API_URL, newUser);
+  return response.data;
 }
 
 export async function updateUser(id, updatedUser) {
-  const response = await fetch(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updatedUser),
-  });
-
-  return response.json();
+  const response = await axios.put(`${API_URL}/${id}`, updatedUser);
+  return response.data;
 }
 
 export async function deleteUser(id) {
-  const response = await fetch(`${API_URL}/${id}`, {
-    method: "DELETE",
-  });
-
-  return response;
+  const response = await axios.delete(`${API_URL}/${id}`);
+  return response.data;
 }
+
